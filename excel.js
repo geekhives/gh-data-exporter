@@ -28,25 +28,35 @@ const setColumn = ({ colCell, rowCell, value, width }, ws) => {
     ws.getCell(cell).value = value;
 }
 
-const generateColumn = (columns, ws) => {
-    if(columns.length > 0) {
-        columns.forEach(item => {
-            setColumn(item, ws);
-        })
+const generateColumn = (data, ws) => {
+    try {
+        const { columns } = data;
+        if(columns.length > 0) {
+            columns.forEach(item => {
+                setColumn(item, ws);
+            })
+        }
+    } catch(error) {
+        throw new Error(error);
     }
 }
 
-const generateRows = (rows, columns, ws) => {
-    if(rows.length > 0) {
-        rows.forEach(item => {
-            ws.addRow();
-            const row = ws.lastRow;
-            columns.forEach((col, idx) => {
-                const cell = idx + 1;
-                row.getCell(cell).value = item[col.key];
-                row.getCell(cell).alignment = item[col.alignment];
+const generateRows = (data, ws) => {
+    try {
+        const { rows, columns } = data;
+        if(rows.length > 0) {
+            rows.forEach(item => {
+                ws.addRow();
+                const row = ws.lastRow;
+                columns.forEach((col, idx) => {
+                    const cell = idx + 1;
+                    row.getCell(cell).value = item[col.key];
+                    row.getCell(cell).alignment = item[col.alignment];
+                })
             })
-        })
+        }
+    } catch(error) {
+        throw new Error(error);
     }
 }
 
