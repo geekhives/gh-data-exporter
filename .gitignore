@@ -1,0 +1,7 @@
+*.xlsx
+*.xls
+*.csv
+node_modules/*
+yarn.lock
+npm-debug.log
+.DS_Store
