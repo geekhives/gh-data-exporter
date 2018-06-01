@@ -1,7 +1,4 @@
-import { workbook, setColumn, generateColumn, generateRows } from './excel';
-
-
-const wb = workbook({ worksheetTitle: 'My Worksheet', filename: 'sample.xlsx' });
+import { workbook, generate } from './excel';
 
 const data = {
     columns: [
@@ -42,8 +39,4 @@ const data = {
     ]
 }
 
-generateColumn(data, wb.worksheet);
-generateRows(data, wb.worksheet);
-
-wb.worksheet.pageSetup.printArea = 'A1:Q29';
-wb.workbook.commit();
+generate(data, workbook({ worksheetTitle: 'My Worksheet', filename: 'sample.xlsx' }));

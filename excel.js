@@ -60,9 +60,15 @@ const generateRows = (data, ws) => {
     }
 }
 
+const generate = (data, wb) => {
+    generateColumn(data, wb.worksheet);
+    generateRows(data, wb.worksheet);
+
+    wb.worksheet.pageSetup.printArea = 'A1:Q29';
+    wb.workbook.commit();
+}
+
 export {
     workbook,
-    setColumn,
-    generateColumn,
-    generateRows
+    generate
 }
