@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.generateRows = exports.generateColumn = exports.setColumn = exports.workbook = undefined;
+exports.generate = exports.workbook = undefined;
 
 var _exceljs = require('exceljs');
 
@@ -82,7 +82,13 @@ var generateRows = function generateRows(data, ws) {
     }
 };
 
+var generate = function generate(data, wb) {
+    generateColumn(data, wb.worksheet);
+    generateRows(data, wb.worksheet);
+
+    wb.worksheet.pageSetup.printArea = 'A1:Q29';
+    wb.workbook.commit();
+};
+
 exports.workbook = workbook;
-exports.setColumn = setColumn;
-exports.generateColumn = generateColumn;
-exports.generateRows = generateRows;
+exports.generate = generate;
