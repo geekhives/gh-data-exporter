@@ -32,7 +32,8 @@ var workbook = function workbook(_ref) {
     });
     return {
         workbook: wb,
-        worksheet: wb.getWorksheet(worksheetTitle)
+        worksheet: wb.getWorksheet(worksheetTitle),
+        options: newOptions
     };
 };
 
@@ -83,11 +84,17 @@ var generateRows = function generateRows(data, ws) {
 };
 
 var generate = function generate(data, wb) {
-    generateColumn(data, wb.worksheet);
-    generateRows(data, wb.worksheet);
-
-    wb.worksheet.pageSetup.printArea = 'A1:Q29';
-    wb.workbook.commit();
+    return new Promise(function (resolve, reject) {
+        try {
+            generateColumn(data, wb.worksheet);
+            generateRows(data, wb.worksheet);
+            wb.workbook.commit();
+            resolve(wb.options);
+        } catch (error) {
+            throw new Error(error);
+            reject(error);
+        }
+    });
 };
 
 exports.workbook = workbook;

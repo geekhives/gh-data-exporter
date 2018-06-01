@@ -18,7 +18,8 @@ const workbook = ({ worksheetTitle, filename }) => {
     });
     return {
         workbook: wb,
-        worksheet: wb.getWorksheet(worksheetTitle)
+        worksheet: wb.getWorksheet(worksheetTitle),
+        options: newOptions
     }
 }
 
@@ -61,12 +62,19 @@ const generateRows = (data, ws) => {
 }
 
 const generate = (data, wb) => {
-    generateColumn(data, wb.worksheet);
-    generateRows(data, wb.worksheet);
-
-    wb.worksheet.pageSetup.printArea = 'A1:Q29';
-    wb.workbook.commit();
+    return new Promise((resolve, reject) => {
+        try {
+            generateColumn(data, wb.worksheet);
+            generateRows(data, wb.worksheet);
+            wb.workbook.commit();
+            resolve(wb.options)
+        } catch(error) {
+            throw new Error(error);
+            reject(error);
+        }
+    })
 }
+
 
 export {
     workbook,
