@@ -40,7 +40,7 @@ generate(
             }
         ]
     },
-    workbook({ worksheetTitle: 'My Worksheet', filename: 'sample.xlsx' })
+    workbook({ worksheetTitle: 'My Worksheet', fullPathFileName: 'sample.xlsx' })
 ).then(data => {
     console.log(data);
 });

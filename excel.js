@@ -1,17 +1,17 @@
 import Excel from 'exceljs';
 
 const options = {
-    filename: './streamed-workbook.xlsx',
+    fullPathFileName: './streamed-workbook.xlsx',
     useStyles: true,
     useSharedStrings: true
 }
 
-const workbook = ({ worksheetTitle, filename }) => {
-    const newOptions = Object.assign({}, options, { filename })
+const workbook = ({ worksheetTitle, fullPathFileName }) => {
+    const newOptions = Object.assign({}, options, { fullPathFileName })
     const wb = new Excel.stream.xlsx.WorkbookWriter(newOptions);
     wb.addWorksheet(worksheetTitle, {
         pageSetup: {
-            paperSize: 9, 
+            paperSize: 9,
             orientation:'protrait',
             fitToPage: true
         }
