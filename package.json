@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "exceljs": "^1.4.6"
+    "exceljs": "^1.4.6",
+    "lodash": "^4.17.11",
+    "xlsx": "^0.14.0"
   },
   "scripts": {
     "start": "NODE_ENV=dev babel-node exporter.js --presets env,stage-0",

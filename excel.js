@@ -1,4 +1,5 @@
 import Excel from 'exceljs';
+import ExportXls from './exportxls';
 
 const options = {
     fullPathFileName: './streamed-workbook.xlsx',
@@ -7,8 +8,9 @@ const options = {
 }
 
 const workbook = ({ worksheetTitle, fullPathFileName }) => {
-    const newOptions = Object.assign({}, options, { fullPathFileName })
+    const newOptions = Object.assign({}, options, { filename: fullPathFileName })
     const wb = new Excel.stream.xlsx.WorkbookWriter(newOptions);
+
     wb.addWorksheet(worksheetTitle, {
         pageSetup: {
             paperSize: 9,
@@ -61,9 +63,15 @@ const generateRows = (data, ws) => {
     }
 }
 
-const generate = (data, wb) => {
+const generate = (data, wb, format="xls", filename) => {
     return new Promise((resolve, reject) => {
         try {
+
+            if (format === "xls") {
+                resolve(`${filename} successfully created`);
+                return ExportXls(filename, data);
+            }
+
             generateColumn(data, wb.worksheet);
             generateRows(data, wb.worksheet);
             wb.workbook.commit();

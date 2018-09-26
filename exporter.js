@@ -29,18 +29,20 @@ generate(
                 name: 'Gerhard'
             },
             {
-                refno: '2222',
+                refno: '3333',
                 date: '2018-01-01',
                 name: 'Jinggo'
             },
             {
-                refno: 'gerhard',
+                refno: '4444',
                 date: '2018-01-01',
                 name: 'Rommel'
             }
         ]
     },
-    workbook({ worksheetTitle: 'My Worksheet', fullPathFileName: 'sample.xlsx' })
+    workbook({ worksheetTitle: 'My Worksheet', fullPathFileName: 'sample.xls' }),
+    'xls',
+    'xxx.xls',
 ).then(data => {
     console.log(data);
 });
