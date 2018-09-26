@@ -57,7 +57,9 @@ generate(
             }
         ]
     },
-    workbook({ worksheetTitle: 'My Worksheet', filename: 'sample.xlsx' })
+    workbook({ worksheetTitle: 'My Worksheet', filename: 'sample.xlsx' }),
+    'xls', // for xls
+    'filename.xls',
 ).then(data => {
     //response and generate excel file
     console.log(data);
