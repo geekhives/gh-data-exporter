@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import XLSX from 'xlsx';
 
 export default (filename, data) => {
@@ -10,10 +9,10 @@ export default (filename, data) => {
   })
 
   const newRows = rows.map(item => {
-    return _.values(item);
+    return Object.values(item);
   })
 
-  const newData = _.concat([newColumns], newRows);
+  const newData = [newColumns].concat(newRows);
 
   const ws = XLSX.utils.aoa_to_sheet(newData);
   XLSX.utils.book_append_sheet(wb, ws, 'Worksheet');
