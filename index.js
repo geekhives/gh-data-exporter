@@ -9,9 +9,9 @@ var _exceljs = require('exceljs');
 
 var _exceljs2 = _interopRequireDefault(_exceljs);
 
-var _exportxls = require('./exportxls');
+var _exportxlsbuild = require('./exportxlsbuild');
 
-var _exportxls2 = _interopRequireDefault(_exportxls);
+var _exportxlsbuild2 = _interopRequireDefault(_exportxlsbuild);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -96,7 +96,7 @@ var generate = function generate(data, wb) {
         try {
 
             if (format === "xls") {
-                (0, _exportxls2.default)(filename, data);
+                (0, _exportxlsbuild2.default)(filename, data);
                 return resolve(filename + ' successfully created');
             }
 
