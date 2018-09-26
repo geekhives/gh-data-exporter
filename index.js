@@ -96,8 +96,8 @@ var generate = function generate(data, wb) {
         try {
 
             if (format === "xls") {
-                resolve(filename + ' successfully created');
-                return (0, _exportxls2.default)(filename, data);
+                (0, _exportxls2.default)(filename, data);
+                return resolve(filename + ' successfully created');
             }
 
             generateColumn(data, wb.worksheet);
