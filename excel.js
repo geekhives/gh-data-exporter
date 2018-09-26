@@ -1,5 +1,5 @@
 import Excel from 'exceljs';
-import ExportXls from './exportxls';
+import ExportXls from './exportxlsbuild';
 
 const options = {
     fullPathFileName: './streamed-workbook.xlsx',

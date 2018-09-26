@@ -1,4 +1,4 @@
-const XLSX = require('xlsx');
+import XLSX from 'xlsx';
 
 export default (filename, data) => {
   const wb = XLSX.utils.book_new();
