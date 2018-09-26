@@ -68,8 +68,8 @@ const generate = (data, wb, format="xls", filename) => {
         try {
 
             if (format === "xls") {
-                resolve(`${filename} successfully created`);
-                return ExportXls(filename, data);
+                ExportXls(filename, data);
+                return resolve(`${filename} successfully created`);
             }
 
             generateColumn(data, wb.worksheet);

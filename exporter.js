@@ -42,7 +42,7 @@ generate(
     },
     workbook({ worksheetTitle: 'My Worksheet', fullPathFileName: 'sample.xls' }),
     'xls',
-    'xxx.xls',
+    'export/xxx.xls',
 ).then(data => {
     console.log(data);
 });
