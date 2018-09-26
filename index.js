@@ -9,20 +9,25 @@ var _exceljs = require('exceljs');
 
 var _exceljs2 = _interopRequireDefault(_exceljs);
 
+var _exportxls = require('./exportxls');
+
+var _exportxls2 = _interopRequireDefault(_exportxls);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var options = {
-    filename: './streamed-workbook.xlsx',
+    fullPathFileName: './streamed-workbook.xlsx',
     useStyles: true,
     useSharedStrings: true
 };
 
 var workbook = function workbook(_ref) {
     var worksheetTitle = _ref.worksheetTitle,
-        filename = _ref.filename;
+        fullPathFileName = _ref.fullPathFileName;
 
-    var newOptions = Object.assign({}, options, { filename: filename });
+    var newOptions = Object.assign({}, options, { filename: fullPathFileName });
     var wb = new _exceljs2.default.stream.xlsx.WorkbookWriter(newOptions);
+
     wb.addWorksheet(worksheetTitle, {
         pageSetup: {
             paperSize: 9,
@@ -84,8 +89,17 @@ var generateRows = function generateRows(data, ws) {
 };
 
 var generate = function generate(data, wb) {
+    var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "xls";
+    var filename = arguments[3];
+
     return new Promise(function (resolve, reject) {
         try {
+
+            if (format === "xls") {
+                resolve(filename + ' successfully created');
+                return (0, _exportxls2.default)(filename, data);
+            }
+
             generateColumn(data, wb.worksheet);
             generateRows(data, wb.worksheet);
             wb.workbook.commit();
